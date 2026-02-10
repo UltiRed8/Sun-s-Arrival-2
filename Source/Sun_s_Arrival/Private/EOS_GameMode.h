@@ -1,0 +1,14 @@
+#pragma once
+
+#include "CoreMinimal.h"
+#include "GameFramework/GameModeBase.h"
+#include "EOS_GameMode.generated.h"
+
+UCLASS()
+class AEOS_GameMode : public AGameModeBase
+{
+	GENERATED_BODY()
+
+public:
+	virtual void PostLogin(APlayerController* _newPlayer) override;
+};

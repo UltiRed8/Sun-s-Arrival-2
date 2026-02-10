@@ -19,11 +19,12 @@ public class Sun_s_Arrival : ModuleRules
 			"GameplayStateTreeModule",
 			"UMG",
 			"Slate",
-			"OnlineSubsystem",
+            "OnlineSubsystemEOS",
+            "OnlineSubsystem",
             "OnlineSubsystemUtils"
         });
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "OnlineSubsystemSteam" });
+		//PrivateDependencyModuleNames.AddRange(new string[] { "OnlineSubsystemSteam" });
 
 		PublicIncludePaths.AddRange(new string[] {
 			"Sun_s_Arrival"
