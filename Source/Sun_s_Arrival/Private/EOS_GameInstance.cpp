@@ -51,7 +51,7 @@ void UEOS_GameInstance::CreateEOSSession(const bool _isDedicatedServer, const bo
 	_settings.bAllowInvites = true;
 	_settings.bIsLANMatch = _isLanServer;
 	_settings.NumPublicConnections = _numberOfPublicConnections;
-	_settings.bUseLobbiesIfAvailable = false;
+	_settings.bUseLobbiesIfAvailable = true;
 	_settings.bUsesPresence = true;
 	_settings.bAllowJoinViaPresence = true;
 	_settings.bAllowJoinInProgress = true;
