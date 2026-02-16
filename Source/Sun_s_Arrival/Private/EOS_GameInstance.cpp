@@ -1,5 +1,5 @@
-#include "Sun_s_Arrival.h"
 #include "EOS_GameInstance.h"
+#include "Sun_s_Arrival.h"
 #include "OnlineSubsystemUtils.h"
 #include "OnlineSubsystem.h"
 #include "Interfaces/OnlineIdentityInterface.h"
@@ -54,6 +54,7 @@ void UEOS_GameInstance::CreateEOSSession(const bool _isDedicatedServer, const bo
 	_settings.bUseLobbiesIfAvailable = false;
 	_settings.bUsesPresence = true;
 	_settings.bAllowJoinViaPresence = true;
+	_settings.bAllowJoinInProgress = true;
 	_settings.bAllowJoinViaPresenceFriendsOnly = false;
 	_settings.bShouldAdvertise = true;
 	_settings.Set("SESSION_ID", FString("Oui"), EOnlineDataAdvertisementType::ViaOnlineService);
