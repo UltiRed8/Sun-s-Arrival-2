@@ -32,6 +32,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "EOS Functions") void FindSessionAndJoin();
 	UFUNCTION(BlueprintCallable, Category = "EOS Functions") void JoinSession();
 	UFUNCTION(BlueprintCallable, Category = "EOS Functions") void DestroySession();
+	UFUNCTION(BlueprintCallable, Category = "EOS Functions") FUniqueNetIdRepl GetNetID();
 
 private:
 	// Methods callbacks

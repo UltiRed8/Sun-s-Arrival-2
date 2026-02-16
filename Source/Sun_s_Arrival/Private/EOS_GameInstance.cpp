@@ -46,6 +46,8 @@ void UEOS_GameInstance::CreateEOSSession(const bool _isDedicatedServer, const bo
 	if (!_subsystem) return;
 	IOnlineSessionPtr _sessionPtrReference = _subsystem->GetSessionInterface();
 	if (!_sessionPtrReference) return;
+	FUniqueNetIdRepl _netId = GetNetID();
+	if (!_netId.IsValid()) return;
 	FOnlineSessionSettings _settings;
 	_settings.bIsDedicated = _isDedicatedServer;
 	_settings.bAllowInvites = true;
@@ -59,7 +61,7 @@ void UEOS_GameInstance::CreateEOSSession(const bool _isDedicatedServer, const bo
 	_settings.bShouldAdvertise = true;
 	_settings.Set("SESSION_ID", FString("Oui"), EOnlineDataAdvertisementType::ViaOnlineService);
 	_sessionPtrReference->OnCreateSessionCompleteDelegates.AddUObject(this, &UEOS_GameInstance::OnCreateSessionCompleted);
-	_sessionPtrReference->CreateSession(0, FName("MainSession_GameSession"), _settings);
+	_sessionPtrReference->CreateSession(*_netId, FName("MainSession_GameSession"), _settings);
 }
 
 void UEOS_GameInstance::FindSessionAndJoin()
@@ -68,12 +70,15 @@ void UEOS_GameInstance::FindSessionAndJoin()
 	if (!_subsystem) return;
 	IOnlineSessionPtr _sessionPtrReference = _subsystem->GetSessionInterface();
 	if (!_sessionPtrReference) return;
+	FUniqueNetIdRepl _netId = GetNetID();
+	if (!_netId.IsValid()) return;
 	sessionSearch = MakeShareable(new FOnlineSessionSearch());
 	sessionSearch->bIsLanQuery = false;
 	sessionSearch->MaxSearchResults = 20;
-	sessionSearch->QuerySettings.SearchParams.Empty();
+	//sessionSearch->QuerySettings.SearchParams.Empty();
+	sessionSearch->QuerySettings.Set(SEARCH_PRESENCE, true, EOnlineComparisonOp::Equals);
 	_sessionPtrReference->OnFindSessionsCompleteDelegates.AddUObject(this, &UEOS_GameInstance::OnFindSessionCompleted);
-	_sessionPtrReference->FindSessions(0, sessionSearch.ToSharedRef());
+	_sessionPtrReference->FindSessions(*_netId, sessionSearch.ToSharedRef());
 }
 
 void UEOS_GameInstance::JoinSession()
@@ -88,6 +93,15 @@ void UEOS_GameInstance::DestroySession()
 	if (!_sessionPtrReference) return;
 	_sessionPtrReference->OnDestroySessionCompleteDelegates.AddUObject(this, &UEOS_GameInstance::OnDestroySessionCompleted);
 	_sessionPtrReference->DestroySession(FName("MainSession_GameSession"));
+}
+
+FUniqueNetIdRepl UEOS_GameInstance::GetNetID()
+{
+	ULocalPlayer* _localPlayer = GetWorld()->GetFirstLocalPlayerFromController();
+	if (!_localPlayer) return FUniqueNetIdRepl();
+	FUniqueNetIdRepl _uniqueNetIdRepl = _localPlayer->GetPreferredUniqueNetId();
+	if (!_uniqueNetIdRepl.IsValid()) return FUniqueNetIdRepl();
+	return _uniqueNetIdRepl;
 }
 
 void UEOS_GameInstance::LoginWithEOS_Return(int32 _localUserNum, bool _wasSuccess, const FUniqueNetId& _userId, const FString& _error)
@@ -121,10 +135,12 @@ void UEOS_GameInstance::OnFindSessionCompleted(bool _wasSuccessful)
 		if (!_subsystem) return;
 		IOnlineSessionPtr _sessionPtrReference = _subsystem->GetSessionInterface();
 		if (!_sessionPtrReference) return;
+		FUniqueNetIdRepl _netId = GetNetID();
+		if (!_netId.IsValid()) return;
 		if (sessionSearch->SearchResults.Num() > 0)
 		{
 			_sessionPtrReference->OnJoinSessionCompleteDelegates.AddUObject(this, &UEOS_GameInstance::OnJoinSessionCompleted);
-			_sessionPtrReference->JoinSession(0, FName("MainSession_GameSession"), sessionSearch->SearchResults[0]);
+			_sessionPtrReference->JoinSession(*_netId, FName("MainSession_GameSession"), sessionSearch->SearchResults[0]);
 		}
 		else
 		{
