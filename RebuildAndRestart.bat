@@ -15,9 +15,9 @@ echo Unreal Editor closed.
 
 echo.
 echo Deleting old build folders...
-rmdir /s /q "C:/Users/UltiRed/Documents/Unreal Projects/Sun_s_Arrival\Binaries"
-rmdir /s /q "C:/Users/UltiRed/Documents/Unreal Projects/Sun_s_Arrival\Intermediate"
-del /q "C:/Users/UltiRed/Documents/Unreal Projects/Sun_s_Arrival\*.sln" >nul 2>&1
+rmdir /s /q "C:/Users/UltiRed/Desktop/Temp2Readme/Sun-s-Arrival-2\Binaries"
+rmdir /s /q "C:/Users/UltiRed/Desktop/Temp2Readme/Sun-s-Arrival-2\Intermediate"
+del /q "C:/Users/UltiRed/Desktop/Temp2Readme/Sun-s-Arrival-2\*.sln" >nul 2>&1
 
 echo.
 echo Regenerating Visual Studio project files...
@@ -28,7 +28,7 @@ if not exist %UBT_PATH% (
     pause
     exit /b 1
 )
-%UBT_PATH% -projectfiles -project="C:/Users/UltiRed/Documents/Unreal Projects/Sun_s_Arrival/Sun_s_Arrival.uproject" -game -engine -progress
+%UBT_PATH% -projectfiles -project="C:/Users/UltiRed/Desktop/Temp2Readme/Sun-s-Arrival-2/Sun_s_Arrival.uproject" -game -engine -progress
 if %errorlevel% neq 0 (
     echo [ERROR] Failed to generate project files.
     pause
@@ -37,7 +37,7 @@ if %errorlevel% neq 0 (
 
 echo.
 echo Compiling project...
-%UBT_PATH% Sun_s_ArrivalEditor Win64 Development -project="C:/Users/UltiRed/Documents/Unreal Projects/Sun_s_Arrival/Sun_s_Arrival.uproject" -progress
+%UBT_PATH% Sun_s_ArrivalEditor Win64 Development -project="C:/Users/UltiRed/Desktop/Temp2Readme/Sun-s-Arrival-2/Sun_s_Arrival.uproject" -progress
 if %errorlevel% neq 0 (
     echo [ERROR] Build failed.
     pause
@@ -46,7 +46,7 @@ if %errorlevel% neq 0 (
 
 echo.
 echo Launching Unreal Editor...
-start "" "C:\Program Files\Epic Games\UE_5.6\Engine\Binaries\Win64\UnrealEditor.exe" "C:/Users/UltiRed/Documents/Unreal Projects/Sun_s_Arrival/Sun_s_Arrival.uproject" -Build
+start "" "C:\Program Files\Epic Games\UE_5.6\Engine\Binaries\Win64\UnrealEditor.exe" "C:/Users/UltiRed/Desktop/Temp2Readme/Sun-s-Arrival-2/Sun_s_Arrival.uproject" -Build
 
 echo.
 echo All tasks completed successfully!
