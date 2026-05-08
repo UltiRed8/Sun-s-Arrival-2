@@ -12,4 +12,7 @@ class UCustomBlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 public:
 	UFUNCTION(BlueprintCallable, Category="Utility")
 	static bool IsGameWorld(const UObject* WorldContextObject);
+
+	UFUNCTION(BlueprintCallable, Category = "Utility")
+	static float GetFPS();
 };
