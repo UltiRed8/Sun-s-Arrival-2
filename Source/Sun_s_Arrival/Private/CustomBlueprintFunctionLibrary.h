@@ -15,4 +15,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Utility")
 	static float GetFPS();
+
+	UFUNCTION(BlueprintCallable, Category = "PSO Compilation")
+	static int32 GetRemainingShaders();
+
+	UFUNCTION(BlueprintCallable, Category = "PSO Compilation")
+	static void CompilePSO();
 };

@@ -1,0 +1,2 @@
+"C:\Program Files\Epic Games\UE_5.6\Engine\Binaries\Win64\UnrealEditor-Cmd.exe" -run=ShaderPipelineCacheTools expand "C:\Users\UltiRed\Desktop\Temp2Readme\Sun-s-Arrival-2\PSOCollection\*.rec.upipelinecache" "C:\Users\UltiRed\Desktop\Temp2Readme\Sun-s-Arrival-2\PSOCollection\*.shk" "C:\Users\UltiRed\Desktop\Temp2Readme\Sun-s-Arrival-2\PSOCollection\PSO_SunArrival2_PCD3D_SM6.spc"
+cmd /k
