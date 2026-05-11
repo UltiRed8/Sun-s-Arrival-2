@@ -21,7 +21,9 @@ public class Sun_s_Arrival : ModuleRules
 			"Slate",
             "OnlineSubsystemEOS",
             "OnlineSubsystem",
-            "OnlineSubsystemUtils"
+            "OnlineSubsystemUtils",
+			"RenderCore",
+			"RHI"
         });
 
 		//PrivateDependencyModuleNames.AddRange(new string[] { "OnlineSubsystemSteam" });
