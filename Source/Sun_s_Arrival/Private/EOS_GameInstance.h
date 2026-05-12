@@ -31,11 +31,12 @@ protected:
 	IOnlineAchievementsPtr achievementsInterface;
 	TSharedPtr<FOnlineSessionSearch> sessionSearch;
 	FString targetLoginType;
+	bool openPortalOnFail;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "EOS Variables") FString openLevelText;
 
 public:
 	// Public Methods
-	UFUNCTION(BlueprintCallable, Category = "EOS Functions") void LoginWithEOS(const FString& _type = "persistentauth");
+	UFUNCTION(BlueprintCallable, Category = "EOS Functions") void LoginWithEOS(const FString& _type = "persistentauth", const bool _openPortalOnFail = true);
 	UFUNCTION(BlueprintCallable, Category = "EOS Functions") void DisconnectFromEOS();
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "EOS Functions") FString GetPlayerUsername();
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "EOS Functions") bool GetPlayerLoginStatus();

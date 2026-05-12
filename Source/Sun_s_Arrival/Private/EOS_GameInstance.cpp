@@ -2,9 +2,10 @@
 #include "Sun_s_Arrival.h"
 #include <Kismet/GameplayStatics.h>
 
-void UEOS_GameInstance::LoginWithEOS(const FString& _type)
+void UEOS_GameInstance::LoginWithEOS(const FString& _type, const bool _openPortalOnFail)
 {
 	targetLoginType = _type;
+	openPortalOnFail = _openPortalOnFail;
 	ConnectWithEOS();
 }
 
@@ -156,7 +157,7 @@ void UEOS_GameInstance::LoginWithEOS_Return(int32 _localUserNum, bool _wasSucces
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("Login Fail Reason - %s"), *_error);
-		if (targetLoginType == "persistentauth")
+		if (targetLoginType == "persistentauth" && openPortalOnFail)
 			LoginWithEOS("accountportal");
 	}
 }
