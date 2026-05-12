@@ -4,6 +4,8 @@
 
 void UEOS_GameInstance::LoginWithEOS(const FString& _type, const bool _openPortalOnFail)
 {
+	if (GetPlayerLoginStatus())
+		return;
 	targetLoginType = _type;
 	openPortalOnFail = _openPortalOnFail;
 	ConnectWithEOS();
@@ -11,6 +13,8 @@ void UEOS_GameInstance::LoginWithEOS(const FString& _type, const bool _openPorta
 
 void UEOS_GameInstance::DisconnectFromEOS()
 {
+	if (!GetPlayerLoginStatus())
+		return;
 	IOnlineSubsystem* _subsystem = Online::GetSubsystem(GetWorld());
 	if (!_subsystem)
 	{
@@ -139,6 +143,7 @@ void UEOS_GameInstance::ConnectWithEOS()
 	_accoundDetails.Type = targetLoginType;
 	_accoundDetails.Id = "";
 	_accoundDetails.Token = "";
+	_identity->OnLoginCompleteDelegates->Clear();
 	_identity->OnLoginCompleteDelegates->AddUObject(this, &UEOS_GameInstance::LoginWithEOS_Return);
 	_identity->Login(0, _accoundDetails);
 }
