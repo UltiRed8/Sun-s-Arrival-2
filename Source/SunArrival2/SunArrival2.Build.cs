@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class Sun_s_Arrival : ModuleRules
+public class SunArrival2 : ModuleRules
 {
-	public Sun_s_Arrival(ReadOnlyTargetRules Target) : base(Target)
+	public SunArrival2(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
@@ -29,7 +29,7 @@ public class Sun_s_Arrival : ModuleRules
 		//PrivateDependencyModuleNames.AddRange(new string[] { "OnlineSubsystemSteam" });
 
 		PublicIncludePaths.AddRange(new string[] {
-			"Sun_s_Arrival"
+			"SunArrival2"
 		});
 
 		// Uncomment if you are using Slate UI

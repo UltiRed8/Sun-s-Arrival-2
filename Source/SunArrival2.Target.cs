@@ -3,13 +3,13 @@
 using UnrealBuildTool;
 using System.Collections.Generic;
 
-public class Sun_s_ArrivalEditorTarget : TargetRules
+public class SunArrival2Target : TargetRules
 {
-	public Sun_s_ArrivalEditorTarget(TargetInfo Target) : base(Target)
+	public SunArrival2Target(TargetInfo Target) : base(Target)
 	{
-		Type = TargetType.Editor;
+		Type = TargetType.Game;
 		DefaultBuildSettings = BuildSettingsVersion.V5;
 		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_6;
-		ExtraModuleNames.Add("Sun_s_Arrival");
+		ExtraModuleNames.Add("SunArrival2");
 	}
 }
