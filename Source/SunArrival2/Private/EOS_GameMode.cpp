@@ -1,13 +1,13 @@
 #include "EOS_GameMode.h"
-#include "OnlineSubsystemUtils.h"
-#include "OnlineSubsystem.h"
-#include "Interfaces/OnlineIdentityInterface.h"
-#include "Interfaces/OnlineSessionInterface.h"
+//#include "OnlineSubsystemUtils.h"
+//#include "OnlineSubsystem.h"
+//#include "Interfaces/OnlineIdentityInterface.h"
+//#include "Interfaces/OnlineSessionInterface.h"
 
 void AEOS_GameMode::PostLogin(APlayerController* _newPlayer)
 {
 	Super::PostLogin(_newPlayer);
-	if (_newPlayer)
+	/*if (_newPlayer)
 	{
 		FUniqueNetIdRepl _uniqueNetIDRepl;
 		if (_newPlayer->IsLocalController())
@@ -42,5 +42,5 @@ void AEOS_GameMode::PostLogin(APlayerController* _newPlayer)
 				UE_LOG(LogTemp, Warning, TEXT("Registration successful"));
 			}
 		}
-	}
+	}*/
 }

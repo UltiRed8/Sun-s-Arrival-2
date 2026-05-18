@@ -19,9 +19,9 @@ public class SunArrival2 : ModuleRules
 			"GameplayStateTreeModule",
 			"UMG",
 			"Slate",
-            "OnlineSubsystemEOS",
-            "OnlineSubsystem",
-            "OnlineSubsystemUtils",
+            //"OnlineSubsystemEOS",
+            //"OnlineSubsystem",
+            //"OnlineSubsystemUtils",
 			"RenderCore",
 			"RHI"
         });

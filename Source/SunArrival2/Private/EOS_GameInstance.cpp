@@ -2,55 +2,55 @@
 #include "Sun_s_Arrival.h"
 #include <Kismet/GameplayStatics.h>
 
-void UEOS_GameInstance::LoginWithEOS(const FString& _type, const bool _openPortalOnFail)
-{
-	if (GetPlayerLoginStatus())
-		return;
-	targetLoginType = _type;
-	openPortalOnFail = _openPortalOnFail;
-	ConnectWithEOS();
-}
-
-void UEOS_GameInstance::DisconnectFromEOS()
-{
-	if (!GetPlayerLoginStatus())
-		return;
-	IOnlineSubsystem* _subsystem = Online::GetSubsystem(GetWorld());
-	if (!_subsystem)
-	{
-		UE_LOG(LogTemp, Error, TEXT("No OnlineSubsystem"));
-		return;
-	}
-	IOnlineIdentityPtr _identity = _subsystem->GetIdentityInterface();
-	if (!_identity)
-	{
-		UE_LOG(LogTemp, Error, TEXT("No IdentityInterface"));
-		return;
-	}
-	_identity->Logout(0);
-	localNetId.Reset();
-	UE_LOG(LogTemp, Warning, TEXT("EOS Account Disconnected"));
-	onLoginStatusChanged.Broadcast(false);
-}
-
-FString UEOS_GameInstance::GetPlayerUsername()
-{
-	IOnlineSubsystem* _subsystem = Online::GetSubsystem(this->GetWorld());
-	if (!_subsystem) return "";
-	IOnlineIdentityPtr _identity = _subsystem->GetIdentityInterface();
-	if (!_identity) return "";
-	if (_identity->GetLoginStatus(0) != ELoginStatus::LoggedIn) return "";
-	return _identity->GetPlayerNickname(0);
-}
-
-bool UEOS_GameInstance::GetPlayerLoginStatus()
-{
-	IOnlineSubsystem* _subsystem = Online::GetSubsystem(this->GetWorld());
-	if (!_subsystem) return false;
-	IOnlineIdentityPtr _identity = _subsystem->GetIdentityInterface();
-	if (!_identity) return false;
-	return _identity->GetLoginStatus(0) == ELoginStatus::LoggedIn;
-}
+//void UEOS_GameInstance::LoginWithEOS(const FString& _type, const bool _openPortalOnFail)
+//{
+//	if (GetPlayerLoginStatus())
+//		return;
+//	targetLoginType = _type;
+//	openPortalOnFail = _openPortalOnFail;
+//	ConnectWithEOS();
+//}
+//
+//void UEOS_GameInstance::DisconnectFromEOS()
+//{
+//	if (!GetPlayerLoginStatus())
+//		return;
+//	IOnlineSubsystem* _subsystem = Online::GetSubsystem(GetWorld());
+//	if (!_subsystem)
+//	{
+//		UE_LOG(LogTemp, Error, TEXT("No OnlineSubsystem"));
+//		return;
+//	}
+//	IOnlineIdentityPtr _identity = _subsystem->GetIdentityInterface();
+//	if (!_identity)
+//	{
+//		UE_LOG(LogTemp, Error, TEXT("No IdentityInterface"));
+//		return;
+//	}
+//	_identity->Logout(0);
+//	localNetId.Reset();
+//	UE_LOG(LogTemp, Warning, TEXT("EOS Account Disconnected"));
+//	onLoginStatusChanged.Broadcast(false);
+//}
+//
+//FString UEOS_GameInstance::GetPlayerUsername()
+//{
+//	IOnlineSubsystem* _subsystem = Online::GetSubsystem(this->GetWorld());
+//	if (!_subsystem) return "";
+//	IOnlineIdentityPtr _identity = _subsystem->GetIdentityInterface();
+//	if (!_identity) return "";
+//	if (_identity->GetLoginStatus(0) != ELoginStatus::LoggedIn) return "";
+//	return _identity->GetPlayerNickname(0);
+//}
+//
+//bool UEOS_GameInstance::GetPlayerLoginStatus()
+//{
+//	IOnlineSubsystem* _subsystem = Online::GetSubsystem(this->GetWorld());
+//	if (!_subsystem) return false;
+//	IOnlineIdentityPtr _identity = _subsystem->GetIdentityInterface();
+//	if (!_identity) return false;
+//	return _identity->GetLoginStatus(0) == ELoginStatus::LoggedIn;
+//}
 
 //void UEOS_GameInstance::CreateEOSSession(const bool _isDedicatedServer, const bool _isLanServer, const int32 _numberOfPublicConnections)
 //{
@@ -116,56 +116,56 @@ bool UEOS_GameInstance::GetPlayerLoginStatus()
 //	return _uniqueNetIdRepl;
 //}
 
-void UEOS_GameInstance::GiveAchievement(const FString& _achievementID)
-{
-	if (!GetPlayerLoginStatus())
-		return;
-	if (!achievementsInterface.IsValid() || !localNetId.IsValid())
-		return;
-	FOnlineAchievementsWriteRef _writeObject = MakeShared<FOnlineAchievementsWrite>();
-	_writeObject->SetFloatStat(FName(*_achievementID), 1.0f);
-	achievementsInterface->WriteAchievements( *localNetId, _writeObject,
-		FOnAchievementsWrittenDelegate::CreateLambda([](const FUniqueNetId& UserId, bool bSuccess)
-			{
-				UE_LOG(LogTemp, Warning, TEXT("Achievement result: %s"), bSuccess ? TEXT("SUCCESS") : TEXT("FAILED"));
-			}
-		)
-	);
-}
-
-void UEOS_GameInstance::ConnectWithEOS()
-{
-	IOnlineSubsystem* _subsystem = Online::GetSubsystem(this->GetWorld());
-	if (!_subsystem) return;
-	IOnlineIdentityPtr _identity = _subsystem->GetIdentityInterface();
-	if (!_identity) return;
-	FOnlineAccountCredentials _accoundDetails;
-	_accoundDetails.Type = targetLoginType;
-	_accoundDetails.Id = "";
-	_accoundDetails.Token = "";
-	_identity->OnLoginCompleteDelegates->Clear();
-	_identity->OnLoginCompleteDelegates->AddUObject(this, &UEOS_GameInstance::LoginWithEOS_Return);
-	_identity->Login(0, _accoundDetails);
-}
-
-void UEOS_GameInstance::LoginWithEOS_Return(int32 _localUserNum, bool _wasSuccess, const FUniqueNetId& _userId, const FString& _error)
-{
-	onLoginStatusChanged.Broadcast(_wasSuccess);
-	if (_wasSuccess)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Login Success"));
-
-		localNetId = _userId.AsShared();
-		IOnlineSubsystem* _subsystem = Online::GetSubsystem(this->GetWorld());
-		achievementsInterface = _subsystem->GetAchievementsInterface();
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT("Login Fail Reason - %s"), *_error);
-		if (targetLoginType == "persistentauth" && openPortalOnFail)
-			LoginWithEOS("accountportal");
-	}
-}
+//void UEOS_GameInstance::GiveAchievement(const FString& _achievementID)
+//{
+//	if (!GetPlayerLoginStatus())
+//		return;
+//	if (!achievementsInterface.IsValid() || !localNetId.IsValid())
+//		return;
+//	FOnlineAchievementsWriteRef _writeObject = MakeShared<FOnlineAchievementsWrite>();
+//	_writeObject->SetFloatStat(FName(*_achievementID), 1.0f);
+//	achievementsInterface->WriteAchievements( *localNetId, _writeObject,
+//		FOnAchievementsWrittenDelegate::CreateLambda([](const FUniqueNetId& UserId, bool bSuccess)
+//			{
+//				UE_LOG(LogTemp, Warning, TEXT("Achievement result: %s"), bSuccess ? TEXT("SUCCESS") : TEXT("FAILED"));
+//			}
+//		)
+//	);
+//}
+//
+//void UEOS_GameInstance::ConnectWithEOS()
+//{
+//	IOnlineSubsystem* _subsystem = Online::GetSubsystem(this->GetWorld());
+//	if (!_subsystem) return;
+//	IOnlineIdentityPtr _identity = _subsystem->GetIdentityInterface();
+//	if (!_identity) return;
+//	FOnlineAccountCredentials _accoundDetails;
+//	_accoundDetails.Type = targetLoginType;
+//	_accoundDetails.Id = "";
+//	_accoundDetails.Token = "";
+//	_identity->OnLoginCompleteDelegates->Clear();
+//	_identity->OnLoginCompleteDelegates->AddUObject(this, &UEOS_GameInstance::LoginWithEOS_Return);
+//	_identity->Login(0, _accoundDetails);
+//}
+//
+//void UEOS_GameInstance::LoginWithEOS_Return(int32 _localUserNum, bool _wasSuccess, const FUniqueNetId& _userId, const FString& _error)
+//{
+//	onLoginStatusChanged.Broadcast(_wasSuccess);
+//	if (_wasSuccess)
+//	{
+//		UE_LOG(LogTemp, Warning, TEXT("Login Success"));
+//
+//		localNetId = _userId.AsShared();
+//		IOnlineSubsystem* _subsystem = Online::GetSubsystem(this->GetWorld());
+//		achievementsInterface = _subsystem->GetAchievementsInterface();
+//	}
+//	else
+//	{
+//		UE_LOG(LogTemp, Error, TEXT("Login Fail Reason - %s"), *_error);
+//		if (targetLoginType == "persistentauth" && openPortalOnFail)
+//			LoginWithEOS("accountportal");
+//	}
+//}
 
 //void UEOS_GameInstance::OnCreateSessionCompleted(FName _sessionName, bool _wasSuccessful)
 //{
