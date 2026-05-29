@@ -1,5 +1,7 @@
 # 🛠 Sun Arrival 2 ☀️
 
+https://github.com/UltiRed8/Sun-s-Arrival-2/blob/08b3ff988c2e7b9ece24738450c4ee79252665ff/SunArrival2Trailer.mp4
+
 A sequel to Sun’s Arrival, developed as a full team project with a focus on expanding the original idea into a larger, more polished horror experience.
 
 Sun Arrival 2 builds on the core concept of the first game and significantly expands it with improved AI, new enemies, additional game modes, and significantly more replayability, atmosphere, and content variety.
