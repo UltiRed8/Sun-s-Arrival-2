@@ -11,6 +11,11 @@ You can play in singleplayer or in multiplayer via direct IP connection (local o
 
 Unlike the first game, this version introduces lore, fully functional arcade machines, and multiple game modes unlocked after completing the main experience.
 
+## Itch.io 🎮
+
+![Itch.io](https://kylariria.itch.io/suns-arrival-2)
+
+
 ## Images 🖼
 
 Crate Warehouse:
