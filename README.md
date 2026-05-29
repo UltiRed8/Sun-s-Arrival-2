@@ -13,8 +13,7 @@ Unlike the first game, this version introduces lore, fully functional arcade mac
 
 ## Itch.io 🎮
 
-[Itch.io](https://kylariria.itch.io/suns-arrival-2)
-
+[![ItchIO](https://img.shields.io/badge/Sun_Arrival_2-FA5C5C?style=for-the-badge)](https://kylariria.itch.io/suns-arrival-2)
 
 ## Images 🖼
 
