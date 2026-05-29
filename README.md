@@ -13,29 +13,25 @@ Unlike the first game, this version introduces lore, fully functional arcade mac
 
 ## Images 🖼
 
-Main Menu:
+Crate Warehouse:
 
-![MainMenu](/DemoImages/MainMenu.PNG)
-
-
-Reactor room:
-
-![ReactorRoom](/DemoImages/ReactorRoom.PNG)
+![CrateWarehouse](/Images/Image1.png)
 
 
-Lobby:
+Break Room:
 
-![Lobby](/DemoImages/Lobby.PNG)
-
-
-Main Office:
-
-![MainOffice](/DemoImages/MainOffice.PNG)
+![BreakRoom](/Images/Image2.png)
 
 
-Warehouse:
+Part Control:
 
-![Warehouse](/DemoImages/Warehouse.PNG)
+![PartControl](/Images/Image3.png)
+
+
+Part Repair:
+
+![PartRepair](/Images/Image4.png)
+
 
 ## Authors 📝
 - [@UltiRed8](https://github.com/UltiRed8)
